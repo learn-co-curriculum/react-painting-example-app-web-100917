@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteablePainting from './DeleteablePainting';
 import Painting from './Painting';
 import artworks from './artworks';
 
@@ -34,7 +35,11 @@ class PaintingList extends React.Component {
     console.log('props in PaintingList', this.props);
     console.log(this.state.paintings);
     const allPaintings = this.state.paintings.map(p => (
-      <Painting key={p.id} painting={p} handleVote={this.handleVote} />
+      <DeleteablePainting
+        key={p.id}
+        painting={p}
+        handleVote={this.handleVote}
+      />
     ));
     return (
       <div>

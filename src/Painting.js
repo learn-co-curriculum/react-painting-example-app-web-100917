@@ -16,6 +16,9 @@ const Painting = props => {
             {props.painting.votes} votes
           </a>
         </div>
+        <div onClick={props.handleDelete} className="ui red basic button">
+          Delete It
+        </div>
       </div>
     </div>
   );
