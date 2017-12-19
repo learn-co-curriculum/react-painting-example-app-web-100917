@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const colors = [
   'red',
@@ -33,19 +34,23 @@ class Navbar extends React.Component {
   render() {
     return (
       <div className={`ui top fixed inverted ${this.state.color} menu`}>
-        <a className="item">
+        <Link to="/" className="item">
           <h2 className="ui header">
             <i className={`${this.props.icon} icon`} />
             <div className="content">{this.props.title}</div>
             <div className="sub header">{this.props.description}</div>
           </h2>
-        </a>
+        </Link>
         <div className="right menu">
-          <div className="item">index</div>
-          <div className="item">new</div>
-          <div className="item">
+          <Link to="/paintings" className="item">
+            index
+          </Link>
+          <Link to="/paintings/new" className="item">
+            new
+          </Link>
+          <Link to="/login" className="item">
             <div className="ui primary button">Log In</div>
-          </div>
+          </Link>
           <div className="item">
             <div onClick={this.handleClick} className="ui button">
               Change Color

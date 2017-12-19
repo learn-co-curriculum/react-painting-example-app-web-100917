@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Painting = props => {
   // console.log('Painting props', props);
@@ -18,10 +19,13 @@ const Painting = props => {
         </div>
         <div className="extra">
           <div className="ui big buttons">
-            <div className="ui basic blue button">
+            <Link
+              to={`/paintings/${props.painting.slug}`}
+              className="ui basic blue button"
+            >
               <i className="add circle icon" />
               More Info
-            </div>
+            </Link>
             <div onClick={props.handleDelete} className="ui button basic red">
               <i className="trash icon" />
             </div>

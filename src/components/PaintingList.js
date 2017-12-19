@@ -3,6 +3,7 @@ import DeleteablePainting from './DeleteablePainting';
 
 class PaintingList extends React.Component {
   render() {
+    console.log(this.props);
     const allPaintings = this.props.paintings.map(p => (
       <DeleteablePainting
         key={p.id}
