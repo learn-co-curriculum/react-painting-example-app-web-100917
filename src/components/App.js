@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import PaintingContainer from './PaintingContainer';
 import PaintingNew from './PaintingNew';
 import About from './About';
+import Login from './Login';
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
       <div id="content" className="ui container">
         {/* <PaintingNew /> */}
         {/* <About /> */}
-        <PaintingContainer />
+        <Login />
+        {/* <PaintingContainer /> */}
       </div>
     </div>
   );
