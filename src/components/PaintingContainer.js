@@ -79,6 +79,7 @@ class PaintingContainer extends React.Component {
             path="/paintings/:slug"
             render={({ match }) => {
               console.log(match.params.slug);
+              // TODO
               return <PaintingShow painting={onePainting} />;
             }}
           />
