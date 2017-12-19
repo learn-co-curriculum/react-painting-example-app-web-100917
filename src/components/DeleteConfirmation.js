@@ -8,7 +8,7 @@ const Painting = props => {
         <img src={props.painting.image} alt={props.painting.slug} />
       </div>
       <div className="middle aligned content">
-        <h1>Are you sure you want to remove {props.painting.title}</h1>
+        <h3>Are you sure you want to remove {props.painting.title}</h3>
         <div className="ui buttons">
           <div
             onClick={props.handleCancelClick}
@@ -16,7 +16,12 @@ const Painting = props => {
           >
             No
           </div>
-          <div className="ui red basic button"> Delete It</div>
+          <div
+            onClick={() => props.handleDelete(props.painting.id)}
+            className="ui red basic button"
+          >
+            Delete It
+          </div>
         </div>
       </div>
     </div>

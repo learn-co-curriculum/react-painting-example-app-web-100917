@@ -16,8 +16,16 @@ const Painting = props => {
             {props.painting.votes} votes
           </a>
         </div>
-        <div onClick={props.handleDelete} className="ui red basic button">
-          Delete It
+        <div className="extra">
+          <div className="ui big buttons">
+            <div className="ui basic blue button">
+              <i className="add circle icon" />
+              More Info
+            </div>
+            <div onClick={props.handleDelete} className="ui button basic red">
+              <i className="trash icon" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
