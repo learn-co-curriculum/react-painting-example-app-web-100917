@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const colors = [
   'red',
@@ -56,7 +56,13 @@ class Navbar extends React.Component {
             </div>
           ) : null}
           {loggedIn ? (
-            <a onClick={this.props.handleLogout} className="item">
+            <a
+              onClick={() => {
+                this.props.history.push('/login');
+                this.props.handleLogout();
+              }}
+              className="item"
+            >
               <div className="ui primary button">Log Out</div>
             </a>
           ) : (
@@ -75,4 +81,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

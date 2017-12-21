@@ -10,6 +10,7 @@ class App extends React.Component {
   state = { auth: { currentUser: {} } };
 
   componentDidMount() {
+    console.log('CDM in APP');
     const token = localStorage.getItem('token');
     if (token) {
       api.auth.getCurrentUser().then(user => {
@@ -22,14 +23,13 @@ class App extends React.Component {
 
   handleLogin = user => {
     const currentUser = { currentUser: user };
-    localStorage.setItem('token', user.id);
+    localStorage.setItem('token', user.token);
 
     this.setState({ auth: currentUser });
   };
 
   handleLogout = () => {
     localStorage.removeItem('token');
-    this.props.history.push('/login');
     this.setState({ auth: { currentUser: {} } });
   };
 
@@ -62,4 +62,4 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+export default App;
