@@ -32,6 +32,8 @@ class Navbar extends React.Component {
   }
 
   render() {
+    const loggedIn = !!this.props.currentUser.id;
+
     return (
       <div className={`ui top fixed inverted ${this.state.color} menu`}>
         <Link to="/" className="item">
@@ -48,9 +50,20 @@ class Navbar extends React.Component {
           <Link to="/paintings/new" className="item">
             new
           </Link>
-          <Link to="/login" className="item">
-            <div className="ui primary button">Log In</div>
-          </Link>
+          {loggedIn ? (
+            <div className="item">
+              {`Welcome ${this.props.currentUser.username}`}
+            </div>
+          ) : null}
+          {loggedIn ? (
+            <a onClick={this.props.handleLogout} className="item">
+              <div className="ui primary button">Log Out</div>
+            </a>
+          ) : (
+            <Link to="/login" className="item">
+              <div className="ui primary button">Log In</div>
+            </Link>
+          )}
           <div className="item">
             <div onClick={this.handleClick} className="ui button">
               Change Color

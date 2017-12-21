@@ -1,16 +1,12 @@
-## React Router Components
+**Authentication:** Verify you are who you say you are
 
-### Router
-Will use 1 place in our application (and one place only).
-Very top level, essentially listening for when the route changes, and making that info accessible
 
-### Route
-Conditionally render a certain component based on what the route looks like
+**Authorization:** Are you allowed to do the thing you are trying to do
 
-### Link
-Changes the url we see in the browser, must have a 'to' prop
 
-### Switch
-Pick one of the following routes (the first that matches), dont look at the others (like an if/ else if/ else if)
+## Task
+When a user visits my web app have they been here before? if so, are they allowed to do the thing they are trying to do otherwise, redirect them to the login
 
-### Redirect
+## Questions when adding any new feature
+- Does the schema need to change?
+- What routes do i need?

@@ -1,6 +1,13 @@
 import React from 'react';
 
 class About extends React.Component {
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.props.history.push('/login');
+    }
+  }
+
   render() {
     return (
       <div>
