@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Painting = props => {
   // console.log('Painting props', props);
@@ -19,6 +20,9 @@ const Painting = props => {
         <div onClick={props.handleDelete} className="ui red basic button">
           Delete It
         </div>
+        <Link to={`/paintings/${props.painting.id}`} className="ui basic button">
+          View
+        </Link>
       </div>
     </div>
   );
