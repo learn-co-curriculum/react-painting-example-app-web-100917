@@ -36,12 +36,7 @@ const App = () => {
       <Navbar icon="paint brush" title="Painterest" description="out app" />
       <Switch>
         <Route path='/about' component={About} />
-        <Route path='/paintings/:id' render={() => {
-          return <div>
-            <PaintingShow painting={painting}/>
-          </div>
-        }} />
-        <Route path='/' component={<PaintingList />} />
+        <Route path='/' component={PaintingList} />
       </Switch>
     </div>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
 import DeleteablePainting from './DeleteablePainting';
+import { Route, Switch } from 'react-router-dom';
+import PaintingShow from './PaintingShow';
 import Painting from './Painting';
 import artworks from './artworks';
 
@@ -42,10 +44,25 @@ class PaintingList extends React.Component {
       />
     ));
     return (
-      <div>
-        <h1>All Paintings</h1>
-        <div className="ui items">{allPaintings}</div>
-      </div>
+      <Switch>
+        <Route path='/paintings/:paintingId' render={(route) => {
+          console.log('route', route.match.params)
+          const id = route.match.params.paintingId
+          const painting = this.state.paintings.find(painting => painting.id == id)
+          console.log(painting)
+          return <div>
+            <PaintingShow painting={painting}/>
+          </div>
+        }} />
+        <Route path='/'  render={()=>{
+          return <div>
+            <h1>All Paintings</h1>
+            <div className="ui items">{allPaintings}</div>
+          </div>
+        }}
+        />
+      </Switch>
+
     );
   }
 }
