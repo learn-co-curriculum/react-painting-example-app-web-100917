@@ -13,13 +13,9 @@ class Counter extends Component {
 
   handleClick() {
     this.setState({ count: this.state.count + 1 });
-    // this.setState(function(prevState) {
-    //   return { count: prevState.count + 1 };
-    // });
   }
 
   render() {
-    console.log('the new state', this.state.count);
     return (
       <div>
         <h1>{this.state.count}</h1>

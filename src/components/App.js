@@ -5,6 +5,7 @@ import PaintingShow from './PaintingShow';
 import { Route, Switch } from 'react-router-dom';
 import Counter from './Counter';
 import About from './About';
+import { BrowserRouter } from 'react-router-dom';
 const painting = {
     id: 1,
     title: 'Portrait of a Carthusian',
@@ -32,6 +33,7 @@ const painting = {
 
 const App = () => {
   return (
+  <BrowserRouter>
     <div className="App">
       <Navbar icon="paint brush" title="Painterest" description="out app" />
       <Switch>
@@ -39,6 +41,7 @@ const App = () => {
         <Route path='/' component={PaintingList} />
       </Switch>
     </div>
+  </BrowserRouter>
   );
 };
 

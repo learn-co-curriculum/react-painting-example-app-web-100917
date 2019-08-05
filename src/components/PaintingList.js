@@ -4,22 +4,23 @@ import { Route, Switch } from 'react-router-dom';
 import PaintingShow from './PaintingShow';
 import Painting from './Painting';
 import artworks from './artworks';
+import {connect} from 'react-redux';
+import { fetchPaintings } from '../actions';
 
 class PaintingList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      paintings: artworks
-    };
+    props.fetchPaintings(artworks)
+
+    // this.state = {
+      // paintings: artworks
+    // };
 
     this.handleVote = this.handleVote.bind(this);
   }
 
   handleVote(id) {
-    // console.log('in handle Vote');
-    // console.log('this', this);
-    // console.log('id', id);
     this.setState(prevState => {
       return {
         paintings: prevState.paintings.map(p => {
@@ -34,9 +35,7 @@ class PaintingList extends React.Component {
   }
 
   render() {
-    console.log('props in PaintingList', this.props);
-    console.log(this.state.paintings);
-    const allPaintings = this.state.paintings.map(p => (
+    const allPaintings = this.props.paintings.map(p => (
       <DeleteablePainting
         key={p.id}
         painting={p}
@@ -48,7 +47,7 @@ class PaintingList extends React.Component {
         <Route path='/paintings/:paintingId' render={(route) => {
           console.log('route', route.match.params)
           const id = route.match.params.paintingId
-          const painting = this.state.paintings.find(painting => painting.id == id)
+          const painting = this.props.paintings.find(painting => painting.id == id)
           console.log(painting)
           return <div>
             <PaintingShow painting={painting}/>
@@ -66,4 +65,21 @@ class PaintingList extends React.Component {
     );
   }
 }
-export default PaintingList;
+
+const mapStateToProps = (state) => {
+  return {
+    paintings: state.paintings
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPaintings: (artworks) => {
+      dispatch(fetchPaintings(artworks))
+    }
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaintingList);
