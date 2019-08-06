@@ -44,9 +44,6 @@ class Navbar extends React.Component {
         </Link>
         <div className="right menu">
           <div className="item">
-            <div onClick={this.handleClick} className="ui button">
-              Change Color
-            </div>
             <Link to='/about' className="ui button">
               About Page
             </Link>
