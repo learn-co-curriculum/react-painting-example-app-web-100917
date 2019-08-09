@@ -5,19 +5,17 @@ import PaintingShow from './PaintingShow';
 import Painting from './Painting';
 import artworks from './artworks';
 import {connect} from 'react-redux';
-import { fetchPaintings } from '../actions';
+import { thunkFetchPaintings, fetchPaintings } from '../actions';
 
 class PaintingList extends React.Component {
   constructor(props) {
     super(props);
 
-    props.fetchPaintings(artworks)
-
-    // this.state = {
-      // paintings: artworks
-    // };
-
     this.handleVote = this.handleVote.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.thunkFetchPaintings()
   }
 
   handleVote(id) {
@@ -34,7 +32,7 @@ class PaintingList extends React.Component {
     });
   }
 
-  render() {
+  renderPaintings(){
     const allPaintings = this.props.paintings.map(p => (
       <DeleteablePainting
         key={p.id}
@@ -42,6 +40,15 @@ class PaintingList extends React.Component {
         handleVote={this.handleVote}
       />
     ));
+    return (
+        <div>
+          <h1>All Paintings</h1>
+          <div className="ui items">{allPaintings}</div>
+        </div>
+    )
+  }
+
+  render() {
     return (
       <Switch>
         <Route path='/paintings/:paintingId' render={(route) => {
@@ -54,10 +61,11 @@ class PaintingList extends React.Component {
           </div>
         }} />
         <Route path='/'  render={()=>{
-          return <div>
-            <h1>All Paintings</h1>
-            <div className="ui items">{allPaintings}</div>
-          </div>
+          return (
+            <div> 
+              {this.props.loader ? <div>Loading...</div> : this.renderPaintings()}
+            </div> 
+          )
         }}
         />
       </Switch>
@@ -68,7 +76,8 @@ class PaintingList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    paintings: state.paintings
+    paintings: state.paintings,
+    loader: state.loader,
   }
 }
 
@@ -76,6 +85,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchPaintings: (artworks) => {
       dispatch(fetchPaintings(artworks))
+    },
+    thunkFetchPaintings: (loginData) => {
+      dispatch(thunkFetchPaintings(loginData))
     }
   }
 }
@@ -83,3 +95,5 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaintingList);
+
+
